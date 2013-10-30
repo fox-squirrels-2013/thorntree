@@ -1,5 +1,6 @@
 require 'sinatra'
 
+# user arrives as guest
 get '/' do
-  "Hello World!"
+  erb :index
 end
