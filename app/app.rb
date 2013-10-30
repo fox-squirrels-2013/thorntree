@@ -9,3 +9,22 @@ ActiveRecord::Base.establish_connection(adapter: 'postgresql',
 get '/' do
   erb :index
 end
+
+
+
+get '/posts' do
+  @posts = Post.all
+  erb :show_posts
+end
+
+get '/posts/new' do
+  erb :create_posts
+end
+
+post '/posts' do
+  Post.create! title:     params[:title],
+               body:      params[:body],
+               signature: params[:signature]
+
+   redirect '/posts'
+end
