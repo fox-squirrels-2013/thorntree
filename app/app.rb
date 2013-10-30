@@ -1,5 +1,6 @@
 require 'sinatra'
 
+# user arrives as guest
 get '/' do
-  "welcome to thorntree!"
+  erb :index
 end
