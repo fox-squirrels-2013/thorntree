@@ -4,7 +4,7 @@ class CreatePosts < ActiveRecord::Migration
       t.string :title
       t.string :body
       t.string :signature
-      
+      t.timestamps
     end
   end
 end
