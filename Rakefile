@@ -12,4 +12,9 @@ namespace :db do
   task :drop do
     `dropdb thorntreedb`
   end
+
+  desc "seed the database"
+  task :seed do
+    SeedDB.populate
+  end
 end
