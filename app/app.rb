@@ -9,3 +9,23 @@ ActiveRecord::Base.establish_connection(adapter: 'postgresql',
 get '/' do
   erb :index
 end
+
+
+
+
+
+
+
+get '/posts/:id/edit' do
+  @post = Post.find(params[:id])
+  p @post
+  erb :edit
+end
+
+put '/posts/:id' do
+  @post = Post.find(params[:id])
+  @post.title = params[:title]
+  @post.save
+  redirect '/'
+ end
+
