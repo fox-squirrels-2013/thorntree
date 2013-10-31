@@ -1,9 +1,9 @@
 <div id="create_posts">
-  <form action="/posts" method="post"> 
-    <ul><p>Title: <input type="text" name="title"></p> 
-        <p>Body: <textarea rows="10" cols="30" name="body"></textarea></p> 
-        <p>Signature: <input type="text" name="signature"></p>
-      </ul>
-    <input type="submit">  
+  <form id="create_post_form" action="/posts" method="post"> 
+    <p><input class="input_form" id="title" type="text" name="title" placeholder="title..."></p> 
+
+    <p><textarea class="input_form" id="input_form body" rows="10" cols="30" name="body" placeholder="message to share..."></textarea></p> 
+    <p><input class="input_form" id="input_form signature" type="text" name="signature" placeholder="sign your name..."></p>
+    <input class="submit_button" id="submit_new_post" type="submit">  
   </form> 
 </div>

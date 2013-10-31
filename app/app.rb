@@ -15,6 +15,11 @@ get '/posts/new' do
   erb :create_posts
 end
 
+get '/posts/:id' do
+  @post = Post.find(params[:id])
+  erb :show_single_post
+end
+
 post '/posts' do
   Post.create! title:     params[:title],
                body:      params[:body],

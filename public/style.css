@@ -1,8 +1,85 @@
 body {
-  background-color: #444;
+  background-color: #fff;
+  padding: 0px;
+  margin: 0px;
+  font-family: 'Raleway Dots', cursive;
+
 }
 
-.all_posts {
+#header h1{
   text-align: center;
-  color: red;
+  font-size: 150px;
+  /*font-family: 'Hanalei', cursive;*/
+}
+
+#header a {
+  text-decoration: none;
+  color: #006600;
+}
+
+#all_posts {
+  width: 500px;
+  margin: auto;
+}
+
+#single_post {
+  text-align: center;
+  margin-bottom: 20px;
+  border: 2px solid #F15A24;
+  background-color: #FEF6F3;
+}
+
+#single_post a{
+  color: #333;
+  text-decoration: none;
+}
+
+#create_posts {
+  text-align: center;
+
+}
+
+#create_post_form {
+  margin: auto;
+}
+
+.input_form {
+  width: 500px;
+  border: 2px solid #F15A24;
+  background-color: #FEF6F3;
+  font-size: 20px;
+  border-radius: 0px;
+}
+
+.input_form:focus {
+  background-color: #fff;
+}
+
+.input_form #title{
+  height: 25px;
+}
+
+.input_form #body{
+  height: 250px;
+}
+
+.input_form #signature{
+  height: 25px;
+}
+
+.submit_button  {
+  border: none;
+  background-color: #F15A24;
+  color: #fff;
+  cursor: pointer;
+}
+
+.submit_button:hover  {
+  background-color: #F47B50;
+}
+
+#submit_new_post {
+  margin-top: 20px;
+  width: 200px;
+  height: 25px;
 }
