@@ -6,14 +6,6 @@ require_relative '../db/seed'
 ActiveRecord::Base.establish_connection(adapter: 'postgresql',
                                         database: 'thorntreedb')
 
-
-# user arrives as guest
-get '/' do
-  erb :index
-end
-
-
-
 get '/posts' do
   @posts = Post.all
   erb :show_posts
@@ -30,3 +22,18 @@ post '/posts' do
 
    redirect '/posts'
 end
+
+
+get '/posts/:id/edit' do
+  @post = Post.find(params[:id])
+  p @post
+  erb :edit
+end
+
+put '/posts/:id' do
+  @post = Post.find(params[:id])
+  @post.title = params[:title]
+  @post.save
+  redirect '/posts'
+ end
+
