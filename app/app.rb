@@ -31,7 +31,6 @@ end
 
 get '/posts/:id/edit' do
   @post = Post.find(params[:id])
-  p @post
   erb :edit
 end
 
@@ -42,3 +41,13 @@ put '/posts/:id' do
   redirect '/posts'
  end
 
+get '/posts/:id/delete' do 
+  @post = Post.find(params[:id])
+  erb :delete
+end
+
+delete '/posts/:id' do 
+  @post = Post.find(params[:id])
+  @post.destroy
+  redirect '/posts'
+end
