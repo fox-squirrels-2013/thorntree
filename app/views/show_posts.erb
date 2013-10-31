@@ -1,0 +1,9 @@
+<div id="all_posts">
+  <% @posts.each do |post| %>
+  <div id="post">
+    <h1><%= post.title %></h1>
+    <p><%= post.body %></p>
+    <p>by: <%= post.signature %></p>
+  </div>
+  <% end %>
+</div>
