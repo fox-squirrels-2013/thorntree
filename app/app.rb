@@ -1,53 +1,68 @@
 require 'sinatra'
 require 'active_record'
-require_relative 'models/post'
+require_relative 'models/note'
 require_relative '../db/seed'
+
 
 ActiveRecord::Base.establish_connection(adapter: 'postgresql',
                                         database: 'thorntreedb')
 
-get '/posts' do
-  @posts = Post.all
-  erb :show_posts
+#######################################################
+# CREATING
+#######################################################
+get '/notes/new' do
+  erb :create_notes
 end
 
-get '/posts/new' do
-  erb :create_posts
-end
-
-get '/posts/:id' do
-  @post = Post.find(params[:id])
-  erb :show_single_post
-end
-
-post '/posts' do
-  Post.create! title:     params[:title],
+post '/notes' do
+  Note.create! title:     params[:title],
                body:      params[:body],
                signature: params[:signature]
 
-   redirect '/posts'
+   redirect '/notes'
 end
 
 
-get '/posts/:id/edit' do
-  @post = Post.find(params[:id])
+#######################################################
+# SHOWING
+#######################################################
+get '/notes' do
+  @notes = Note.all.shuffle[0..5]
+  erb :show_notes
+end
+
+get '/notes/:id' do
+  @note = Note.find(params[:id])
+  erb :show_single_note
+end
+
+
+#######################################################
+# EDITING
+#######################################################
+get '/notes/:id/edit' do
+  @note = note.find(params[:id])
   erb :edit
 end
 
-put '/posts/:id' do
-  @post = Post.find(params[:id])
-  @post.title = params[:title]
-  @post.save
-  redirect '/posts'
+put '/notes/:id' do
+  @note = Note.find(params[:id])
+  @note.title = params[:title]
+  @note.save
+  redirect '/notes'
  end
 
-get '/posts/:id/delete' do 
-  @post = Post.find(params[:id])
+
+#######################################################
+# DELETING
+#######################################################
+get '/notes/:id/delete' do 
+  @note = Note.find(params[:id])
   erb :delete
 end
 
-delete '/posts/:id' do 
-  @post = Post.find(params[:id])
-  @post.destroy
-  redirect '/posts'
+delete '/notes/:id' do 
+  @note = Note.find(params[:id])
+  @note.destroy
+  redirect '/notes'
 end
