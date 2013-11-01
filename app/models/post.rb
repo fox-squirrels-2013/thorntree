@@ -9,6 +9,6 @@ class Post < ActiveRecord::Base
   end
 
   def holes
-    rand(0..reeds)
+    rand(0..reeds.count)
   end
 end
