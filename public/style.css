@@ -17,29 +17,29 @@ body {
   color: #006600;
 }
 
-#all_posts {
+#all_notes {
   width: 500px;
   margin: auto;
 }
 
-#single_post {
+#single_note {
   text-align: center;
   margin-bottom: 20px;
   border: 2px solid #F15A24;
   background-color: #FEF6F3;
 }
 
-#single_post a{
+#single_note a{
   color: #333;
   text-decoration: none;
 }
 
-#create_posts {
+#create_notes {
   text-align: center;
 
 }
 
-#create_post_form {
+#create_note_form {
   margin: auto;
 }
 
@@ -78,7 +78,7 @@ body {
   background-color: #F47B50;
 }
 
-#submit_new_post {
+#submit_new_note {
   margin-top: 20px;
   width: 200px;
   height: 25px;
