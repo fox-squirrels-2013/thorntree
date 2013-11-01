@@ -5,7 +5,7 @@ class CreateBabbles < ActiveRecord::Migration
       t.string     :title
       t.string     :body
       t.string     :signature
-      t.boolean    :original_note
+      t.boolean    :original_note, :default => false
 
       t.timestamps
     end

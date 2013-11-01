@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20131101022428) do
     t.string   "title"
     t.string   "body"
     t.string   "signature"
-    t.boolean  "original_note"
+    t.boolean  "original_note", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "ip_address"
