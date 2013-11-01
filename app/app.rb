@@ -6,18 +6,11 @@ require_relative '../db/seed'
 ActiveRecord::Base.establish_connection(adapter: 'postgresql',
                                         database: 'thorntreedb')
 
-get '/posts' do
-  @posts = Post.all
-  erb :show_posts
-end
-
+#######################################################
+# CREATING
+#######################################################
 get '/posts/new' do
   erb :create_posts
-end
-
-get '/posts/:id' do
-  @post = Post.find(params[:id])
-  erb :show_single_post
 end
 
 post '/posts' do
@@ -29,6 +22,23 @@ post '/posts' do
 end
 
 
+#######################################################
+# SHOWING
+#######################################################
+get '/posts' do
+  @posts = Post.all.shuffle[0..5]
+  erb :show_posts
+end
+
+get '/posts/:id' do
+  @post = Post.find(params[:id])
+  erb :show_single_post
+end
+
+
+#######################################################
+# EDITING
+#######################################################
 get '/posts/:id/edit' do
   @post = Post.find(params[:id])
   erb :edit
@@ -41,6 +51,10 @@ put '/posts/:id' do
   redirect '/posts'
  end
 
+
+#######################################################
+# DELETING
+#######################################################
 get '/posts/:id/delete' do 
   @post = Post.find(params[:id])
   erb :delete
