@@ -1,8 +1,8 @@
 require 'sinatra'
 require 'active_record'
 require_relative 'models/note'
-require_relative 'models/babble'
 require_relative 'models/reed'
+require_relative 'models/babble'
 require_relative '../db/seed'
 
 
@@ -73,4 +73,20 @@ delete '/notes/:id' do
   @note = Note.find(params[:id])
   @note.destroy
   redirect '/notes'
+end
+
+#######################################################
+#######################################################
+#
+# DO NOT PUT ANY ROUTES BELOW THIS LINE
+#
+#######################################################
+#######################################################
+# catch-all route
+#
+# note: if anything wierd is happening with routes
+# it's probably because you put them below this line
+#######################################################
+get '/*' do
+  redirect '/posts'
 end
