@@ -12,6 +12,7 @@ ActiveRecord::Base.establish_connection(adapter: 'postgresql',
 #######################################################
 # CREATING
 #######################################################
+
 get '/notes/new' do
   erb :create_notes
 end
@@ -28,6 +29,7 @@ end
 #######################################################
 # SHOWING
 #######################################################
+
 get '/notes' do
   @notes = Note.all.shuffle[0..5]
   erb :show_notes
@@ -43,7 +45,6 @@ end
 # EDITING
 #######################################################
 
-
 get '/notes/:id/edit' do
   @note = Note.find(params[:id])
   erb :edit
@@ -51,8 +52,8 @@ end
 
 put '/notes/:id' do
   n = Note.find(params[:id])
-  n.title = params[:title]
-  n.body = params[:body]
+  n.title     = params[:title]
+  n.body      = params[:body]
   n.signature = params[:signature]
   n.save
   redirect "/notes/#{n.id}"
@@ -62,6 +63,7 @@ end
 #######################################################
 # DELETING
 #######################################################
+
 get '/notes/:id/delete' do 
   @note = Note.find(params[:id])
   erb :delete
