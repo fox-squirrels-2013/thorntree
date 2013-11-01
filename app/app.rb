@@ -40,17 +40,21 @@ end
 #######################################################
 # EDITING
 #######################################################
+
+
 get '/notes/:id/edit' do
-  @note = note.find(params[:id])
+  @note = Note.find(params[:id])
   erb :edit
 end
 
 put '/notes/:id' do
-  @note = Note.find(params[:id])
-  @note.title = params[:title]
-  @note.save
-  redirect '/notes'
- end
+  n = Note.find(params[:id])
+  n.title = params[:title]
+  n.body = params[:body]
+  n.signature = params[:signature]
+  n.save
+  redirect "/notes/#{n.id}"
+end
 
 
 #######################################################

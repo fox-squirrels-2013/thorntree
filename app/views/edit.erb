@@ -1,6 +1,15 @@
-  <form action="/notes/<%= @note.id %>" method="post" id="edit">  
-    <input type="hidden" name="_method" value="put">
-    <textarea name="title"><%= @note.title %></textarea>  
-    <input type="submit">  
-  </form>  
+ <div id="edit_notes">
+  <h1>Edit</h1>
 
+  <form id="edit_note_form" action="/notes/<%= @note.id %>" method="post"> 
+    <input type="hidden" name="_method" value="put">
+
+    <p><input class="input_form" id="title" type="text" name="title" value="<%= @note.title %>"></p> 
+
+    <p><textarea class="input_form" id="input_form body" rows="10" cols="30" name="body"><%= @note.body %></textarea></p> 
+
+    <p><input class="input_form" id="input_form signature" type="text" name="signature" value="<%= @note.signature %>"></p>
+
+    <input class="submit_button" id="submit_new_note" type="submit">  
+  </form> 
+</div> 

@@ -43,6 +43,16 @@ body {
   margin: auto;
 }
 
+#edit_notes {
+  text-align: center;
+
+}
+
+#edit_note_form {
+  margin: auto;
+}
+
+
 .input_form {
   width: 500px;
   border: 2px solid #F15A24;
