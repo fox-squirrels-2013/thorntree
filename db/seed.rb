@@ -10,7 +10,7 @@ class SeedDB
       n = Note.create!
 
       Babble.create!   note_id:   n.id,
-                       title:     Faker::Company.name,
+                       title:     Faker::Company.catch_phrase,
                        body:      Faker::Company.bs,
                        signature: Faker::Name.name,
                        original_note: true
@@ -18,7 +18,7 @@ class SeedDB
 
     15.times do
       Babble.create!   note_id:   Note.all.sample.id,
-                       title:     Faker::Company.name,
+                       title:     Faker::Company.catch_phrase,
                        body:      Faker::Company.bs,
                        signature: Faker::Name.name,
                        original_note: false

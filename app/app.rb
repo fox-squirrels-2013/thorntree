@@ -1,42 +1,66 @@
 require 'sinatra'
 require 'active_record'
+require_relative 'models/babble'
 require_relative 'models/note'
 require_relative 'models/reed'
-require_relative 'models/babble'
 require_relative '../db/seed'
 
+enable :sessions
 
 ActiveRecord::Base.establish_connection(adapter: 'postgresql',
                                         database: 'thorntreedb')
+
+helpers do
+  def track(breadcrumb)
+    session[:breadcrumbs] ||= ''
+    session[:breadcrumbs] += "\n#{breadcrumb}"
+    puts session[:breadcrumbs]
+  end
+end
 
 #######################################################
 # CREATING
 #######################################################
 
+get '/leave' do
+  # save the breadcrumbs here  
+end
+
 get '/notes/new' do
+  track("started creating a new note")
+
   erb :create_notes
 end
 
 post '/notes' do
-  Note.create! title:     params[:title],
-               body:      params[:body],
-               signature: params[:signature]
-
-   redirect '/notes'
+  note = Note.create!
+  note.babbles << Babble.create!(params[:babble]
+                                        .merge(original_note: true))
+  track("finished creating note [#{note.id}]")
+  redirect '/notes'
 end
-
 
 #######################################################
 # SHOWING
 #######################################################
 
 get '/notes' do
-  @notes = Note.all.shuffle[0..5]
+  # session[:message] = '' if session[:message].nil?
+  # puts session[:message] += "\n arrived at the homepage"
+  track("arrived at home page")
+
+  @notes = Note.still_on_tree # .shuffle[0..5]
+  @notes.map(&:decay!)
+  @notes = Note.still_on_tree # .shuffle[0..5]
   erb :show_notes
 end
 
 get '/notes/:id' do
+  track("viewed note [#{params[:id]}]")
+
   @note = Note.find(params[:id])
+  @note.holes += 1
+  @note.save
   erb :show_single_note
 end
 
@@ -45,31 +69,46 @@ end
 # EDITING
 #######################################################
 
+# shows the form to edit a note
 get '/notes/:id/edit' do
+  track("started editing note [#{params[:id]}]")
+
   @note = Note.find(params[:id])
   erb :edit
 end
 
+# receives the post from the edit form
 put '/notes/:id' do
-  n = Note.find(params[:id])
-  n.title     = params[:title]
-  n.body      = params[:body]
-  n.signature = params[:signature]
-  n.save
-  redirect "/notes/#{n.id}"
+  track("finished editing note [#{params[:id]}]")
+
+  # n = Note.find(params[:id])
+
+  # n.save
+  # redirect "/notes/#{n.id}"
 end
 
+
+# .babbles << Babble.create!(params[:babble]
+#                                         .merge(original_note: true))
+
+  # n.title     = params[:title]
+  # n.body      = params[:body]
+  # n.signature = params[:signature]
 
 #######################################################
 # DELETING
 #######################################################
 
 get '/notes/:id/delete' do 
+  track("started deleting note [#{params[:id]}]")
+
   @note = Note.find(params[:id])
   erb :delete
 end
 
 delete '/notes/:id' do 
+  track("finished deleting note [#{params[:id]}]")
+
   @note = Note.find(params[:id])
   @note.destroy
   redirect '/notes'
@@ -88,5 +127,6 @@ end
 # it's probably because you put them below this line
 #######################################################
 get '/*' do
-  redirect '/posts'
+  track("tried to view a nonexistent page")
+  redirect '/notes'
 end

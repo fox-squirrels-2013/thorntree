@@ -3,12 +3,15 @@
 
   <form id="edit_note_form" action="/notes/<%= @note.id %>" method="post"> 
     <input type="hidden" name="_method" value="put">
+   <p><%= @note.title %></p>
+    <p><input class="input_form" id="title" type="text" name="title"></p> 
+<p><%= @note.body %></p>
+    <p><textarea class="input_form" id="input_form body" rows="10" cols="30" name="body" maxlength="<%= (120 - @note.body.length) * @note.reeds.count %>"></textarea></p> 
 
-    <p><input class="input_form" id="title" type="text" name="title" value="<%= @note.title %>"></p> 
+    <p><%= (120 - @note.body.length) * @note.reeds.count %></p>
 
-    <p><textarea class="input_form" id="input_form body" rows="10" cols="30" name="body"><%= @note.body %></textarea></p> 
-
-    <p><input class="input_form" id="input_form signature" type="text" name="signature" value="<%= @note.signature %>"></p>
+<p><%= @note.signature %></p>
+    <p><input class="input_form" id="input_form signature" type="text" name="signature"></p>
 
     <input class="submit_button" id="submit_new_note" type="submit">  
   </form> 

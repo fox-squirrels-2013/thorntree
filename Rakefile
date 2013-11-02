@@ -17,4 +17,12 @@ namespace :db do
   task :seed do
     SeedDB.populate
   end
+
+  desc "reset"
+  task :reset => [:drop, :create, :migrate, :seed]
 end
+
+# use this at the console
+# the ; means "do the command and keep truckin"
+# the && means "do the command and ONLY IF IT SUCCEEDS keep truckin"
+# rake db:drop; rake db:create && rake db:migrate && rake db:seed
