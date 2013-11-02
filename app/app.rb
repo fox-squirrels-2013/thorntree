@@ -1,8 +1,8 @@
 require 'sinatra'
 require 'active_record'
+require_relative 'models/babble'
 require_relative 'models/note'
 require_relative 'models/reed'
-require_relative 'models/babble'
 require_relative '../db/seed'
 
 
