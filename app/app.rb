@@ -46,20 +46,27 @@ end
 # EDITING
 #######################################################
 
+# shows the form to edit a note
 get '/notes/:id/edit' do
   @note = Note.find(params[:id])
   erb :edit
 end
 
+# receives the post from the edit form
 put '/notes/:id' do
-  n = Note.find(params[:id])
-  n.title     = params[:title]
-  n.body      = params[:body]
-  n.signature = params[:signature]
-  n.save
-  redirect "/notes/#{n.id}"
+  # n = Note.find(params[:id])
+
+  # n.save
+  # redirect "/notes/#{n.id}"
 end
 
+
+# .babbles << Babble.create!(params[:babble]
+#                                         .merge(original_note: true))
+
+  # n.title     = params[:title]
+  # n.body      = params[:body]
+  # n.signature = params[:signature]
 
 #######################################################
 # DELETING
