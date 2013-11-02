@@ -11,13 +11,10 @@ class Note < ActiveRecord::Base
 
   scope :still_on_tree, -> { where("integrity > 0") }
 
-  def decay!(*args)
-    b, r, h = args
-    self.integrity = 1000 - (b * r * h)
-  end
 
   def decay!
-    self.integrity = 1000 - (babbles.count * reeds.count * holes.count)
+    self.integrity -= (babbles.count * reeds.count * holes)
+    self.save
   end
 
 

@@ -31,12 +31,16 @@ end
 #######################################################
 
 get '/notes' do
-  @notes = Note.all.shuffle[0..5]
+  @notes = Note.still_on_tree # .shuffle[0..5]
+  @notes.map(&:decay!)
+  @notes = Note.still_on_tree # .shuffle[0..5]
   erb :show_notes
 end
 
 get '/notes/:id' do
   @note = Note.find(params[:id])
+  @note.holes += 1
+  @note.save
   erb :show_single_note
 end
 
