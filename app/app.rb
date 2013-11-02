@@ -18,13 +18,10 @@ get '/notes/new' do
 end
 
 post '/notes' do
-  Note.create! title:     params[:title],
-               body:      params[:body],
-               signature: params[:signature]
-
-   redirect '/notes'
+  Note.create!.babbles << Babble.create!(params[:babble]
+                                        .merge(original_note: true))
+  redirect '/notes'
 end
-
 
 #######################################################
 # SHOWING
