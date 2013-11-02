@@ -17,6 +17,9 @@ namespace :db do
   task :seed do
     SeedDB.populate
   end
+
+  desc "reset"
+  task :reset => [:drop, :create, :migrate, :seed]
 end
 
 # use this at the console
