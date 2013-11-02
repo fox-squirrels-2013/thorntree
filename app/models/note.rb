@@ -1,6 +1,6 @@
 
 class Note < ActiveRecord::Base
-  DELIMITERS = [" ... ", "<hr>", " ~~~ "]
+  DELIMITERS = ["<br>", " , "]
 
   has_many :babbles
   has_many :reeds
@@ -11,12 +11,10 @@ class Note < ActiveRecord::Base
 
   scope :still_on_tree, -> { where("integrity > 0") }
 
-
   def decay!
     self.integrity -= (babbles.count * reeds.count * holes)
     self.save
   end
-
 
   #######################################################
   # surface babble interface into note
@@ -35,9 +33,9 @@ class Note < ActiveRecord::Base
   # end
 
   #define_method- allows you to define a variable/dynamic method
-  [:title, :signature, :body].each do |meth|
+  [:title, :signature, :body].each_with_index do |meth, idx|
     define_method meth do
-      field_helper(meth, DELIMITERS.sample)
+      field_helper(meth, DELIMITERS[idx])
     end
   end
 
