@@ -88,5 +88,5 @@ end
 # it's probably because you put them below this line
 #######################################################
 get '/*' do
-  redirect '/posts'
+  redirect '/notes'
 end
