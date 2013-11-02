@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131101224059) do
+ActiveRecord::Schema.define(version: 20131102005446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 20131101224059) do
   create_table "notes", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "integrity",  default: 1000
+    t.integer  "holes",      default: 1
   end
 
   create_table "reeds", force: true do |t|

@@ -1,8 +1,29 @@
 
 class Note < ActiveRecord::Base
   DELIMITERS = [" ... ", "<hr>", " ~~~ "]
+
   has_many :babbles
   has_many :reeds
+
+  #######################################################
+  # setup decay algorithm and related data and methods
+  #######################################################
+
+  scope :still_on_tree, -> { where("integrity > 0") }
+
+  def decay!(*args)
+    b, r, h = args
+    self.integrity = 1000 - (b * r * h)
+  end
+
+  def decay!
+    self.integrity = 1000 - (babbles.count * reeds.count * holes.count)
+  end
+
+
+  #######################################################
+  # surface babble interface into note
+  #######################################################
 
   # def title
   #   field_helper(:title, "<br>--<br>")
