@@ -9,7 +9,7 @@
 
   <form id="create_note_form" action="/notes" method="post"> 
 
-    <p><textarea class="input_form" id="body" rows="10" cols="30" name="babble[body]" maxlength="<%= (2000 - @note.body.length) * @note.reeds.count %>" placeholder="message to share..."></textarea></p>
+    <p><textarea class="input_form" id="body" rows="10" cols="30" name="babble[body]" maxlength="<%= (2000 - @note.body.length) %>" placeholder="message to share..."></textarea></p>
 
     <p><%= (2000 - @note.body.length) %> characters until babble full</p>
 
