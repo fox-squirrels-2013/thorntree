@@ -34,6 +34,51 @@ body {
   text-decoration: none;
 }
 
+#edit_note_block {
+  width: 500px;
+  margin: auto;
+  position: relative;
+  text-align: center;
+}
+
+
+#single_note_edit {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%; width: 100%;
+  background-color: #ddd;
+  display: none;
+}
+
+#edit_text {
+  position: relative;
+  top: 35%;
+  color: #222;
+  text-decoration: none;
+}
+
+#edit_note_block:hover #single_note{
+  opacity:0.3;
+  filter:alpha(opacity=30); /* For IE8 and earlier */
+}
+
+#edit_note_block:hover #single_note_edit{
+  display: inline-block;
+  background-color: #eee;
+  opacity:0.5;
+  filter:alpha(opacity=50); /* For IE8 and earlier */
+}
+
+
+
+#single_note_edit:hover #single_note {
+  color: #aaa;
+}
+
+#single_note_edit:hover {
+  background-color: #ddd;
+}
+
 #create_notes {
   text-align: center;
 
@@ -50,6 +95,13 @@ body {
 
 #edit_note_form {
   margin: auto;
+}
+
+.babble {
+  margin: auto;
+  width: 500px;
+  border: 2px solid #F15A24;
+  background-color: #FEF6F3; 
 }
 
 
