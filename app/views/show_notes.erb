@@ -2,8 +2,7 @@
   <% @notes.each do |note| %>
   <div id="single_note">
     <a href="/notes/<%= note.id %>">
-      <h1><%= note.title %></h1>
-      <p>-<%= note.signature %></p>
+      <h3><%= note.body %></h3>
       <p>holes: <%= note.holes %></p>
       <p>integrity: <%= note.integrity %></p>
     </a>

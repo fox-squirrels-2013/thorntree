@@ -1,11 +1,15 @@
-<div id="all_notes">
+<div id="edit_note_block">
   <div id="single_note">
     <a href="/notes/<%= @note.id %>">
-      <h1><%= @note.title %></h1>
-      <p><%= @note.body %></p>
-      <p>-<%= @note.signature %></p>
+      <h3><%= @note.body %></h3>
       <p>holes: <%= @note.holes %></p>
       <p>integrity: <%= @note.integrity %></p>
     </a>
   </div>
+
+  <a href='/notes/<%= @note.id %>/edit'>
+    <div id="single_note_edit">
+      <div id="edit_text"><h1>click to edit</h1></div>
+    </div>
+  </a>
 </div>
