@@ -10,16 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131102005446) do
+ActiveRecord::Schema.define(version: 20131102234827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "babbles", force: true do |t|
     t.integer  "note_id"
-    t.string   "title"
     t.string   "body"
-    t.string   "signature"
     t.boolean  "original_note", default: false
     t.datetime "created_at"
     t.datetime "updated_at"

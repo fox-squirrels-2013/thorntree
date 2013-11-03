@@ -28,16 +28,16 @@ class Note < ActiveRecord::Base
   #   field_helper(:signature, ".....")
   # end
 
-  # def body
-  #   field_helper(:body, "~~~~")
-  # end
+  def body
+    field_helper(:body, "<br>~~~~~<br>")
+  end
 
   #define_method- allows you to define a variable/dynamic method
-  [:title, :signature, :body].each_with_index do |meth, idx|
-    define_method meth do
-      field_helper(meth, DELIMITERS[idx])
-    end
-  end
+  # [:title, :signature, :body].each_with_index do |meth, idx|
+  #   define_method meth do
+  #     field_helper(meth, DELIMITERS[idx])
+  #   end
+  # end
 
   def field_helper(sym, sep)
     self.babbles.map(&sym).join(sep)

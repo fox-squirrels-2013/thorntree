@@ -34,6 +34,47 @@ body {
   text-decoration: none;
 }
 
+#edit_note_block {
+  width: 500px;
+  margin: auto;
+  position: relative;
+  text-align: center;
+}
+
+
+#single_note_edit {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #ddd;
+  display: none;
+}
+
+#edit_note_block:hover #single_note_edit{
+  display: inline-block;
+  background-color: #ddd;
+  opacity:0.8;
+  filter:alpha(opacity=80); /* For IE8 and earlier */
+
+}
+
+#single_note_edit h1 {
+  position: absolute;
+  top: 35%; left: 31%;
+  color: #222;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#single_note_edit:hover #single_note {
+  color: #aaa;
+}
+
+#single_note_edit:hover {
+  background-color: #ddd;
+}
+
 #create_notes {
   text-align: center;
 
