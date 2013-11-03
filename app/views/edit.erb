@@ -1,18 +1,20 @@
  <div id="edit_notes">
-  <h1>Edit</h1>
+  <h1>Current note babbles</h1>
 
   <form id="edit_note_form" action="/notes/<%= @note.id %>" method="post"> 
     <input type="hidden" name="_method" value="put">
-   <p><%= @note.title %></p>
-    <p><input class="input_form" id="title" type="text" name="title"></p> 
-<p><%= @note.body %></p>
-    <p><textarea class="input_form" id="input_form body" rows="10" cols="30" name="body" maxlength="<%= (120 - @note.body.length) * @note.reeds.count %>"></textarea></p> 
+   <div class="babble"><p><%= @note.body %></p></div>
 
-    <p><%= (120 - @note.body.length) * @note.reeds.count %></p>
+  <h1>Add babble to note</h1>
 
-<p><%= @note.signature %></p>
-    <p><input class="input_form" id="input_form signature" type="text" name="signature"></p>
+  <form id="create_note_form" action="/notes" method="post"> 
 
-    <input class="submit_button" id="submit_new_note" type="submit">  
+    <p><textarea class="input_form" id="body" rows="10" cols="30" name="babble[body]" maxlength="<%= (2000 - @note.body.length) * @note.reeds.count %>" placeholder="message to share..."></textarea></p>
+
+    <p><%= (2000 - @note.body.length) %> characters until babble full</p>
+
+    
+    <input class="submit_button" id="submit_new_note" type="submit">
+
   </form> 
 </div> 

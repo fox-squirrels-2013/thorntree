@@ -35,7 +35,7 @@ end
 post '/notes' do
   note = Note.create!
   note.babbles << Babble.create!(params[:babble]
-                                        .merge(original_note: true))
+                                .merge(original_note: true))
   track("finished creating note [#{note.id}]")
   redirect '/notes'
 end
@@ -81,19 +81,11 @@ end
 put '/notes/:id' do
   track("finished editing note [#{params[:id]}]")
 
-  # n = Note.find(params[:id])
+  n = Note.find(params[:id])
+  n.babbles << Babble.create!(params[:babble])
 
-  # n.save
-  # redirect "/notes/#{n.id}"
+  redirect "/notes/#{n.id}"
 end
-
-
-# .babbles << Babble.create!(params[:babble]
-#                                         .merge(original_note: true))
-
-  # n.title     = params[:title]
-  # n.body      = params[:body]
-  # n.signature = params[:signature]
 
 #######################################################
 # DELETING
