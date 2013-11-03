@@ -5,7 +5,11 @@ require_relative 'models/note'
 require_relative 'models/reed'
 require_relative '../db/seed'
 
-enable :sessions
+use Rack::Session::Cookie, :key => 'rack.session',
+                           :domain => 'thorntree',
+                           :path => '/',
+                           :expire_after => 2592000,
+                           :secret => 'some secret'
 
 ActiveRecord::Base.establish_connection(adapter: 'postgresql',
                                         database: 'thorntreedb')
@@ -21,10 +25,6 @@ end
 #######################################################
 # CREATING
 #######################################################
-
-get '/leave' do
-  # save the breadcrumbs here  
-end
 
 get '/notes/new' do
   track("started creating a new note")
@@ -80,7 +80,7 @@ end
 # receives the post from the edit form
 put '/notes/:id' do
   track("finished editing note [#{params[:id]}]")
-
+  p params
   # n = Note.find(params[:id])
 
   # n.save
@@ -113,6 +113,31 @@ delete '/notes/:id' do
   @note.destroy
   redirect '/notes'
 end
+
+
+#######################################################
+# SEARCHING
+#######################################################
+
+get '/search' do
+  "show the search form"
+  erb :search_form
+end
+
+post '/search' do
+   # params #{"search"=>"asdasd"}
+   # SELECT id FROM babbles WHERE body like '%partner%'
+   # Babble.where("body like '%partner%'")
+   results = Babble.where("body like '%#{params[:search]}%'")
+
+   content = results.all.map(&:title).join("<br>")
+
+   output  = "<pre>"
+   output += "we got #{results.count} results."
+   output += "\n\n#{content}</pre>"
+   output
+end
+
 
 #######################################################
 #######################################################
