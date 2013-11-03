@@ -3,15 +3,15 @@
 
   <form id="edit_note_form" action="/notes/<%= @note.id %>" method="post"> 
     <input type="hidden" name="_method" value="put">
-   <p><%= @note.body %></p>
+   <div class="babble"><p><%= @note.body %></p></div>
 
   <h1>Add babble to note</h1>
 
   <form id="create_note_form" action="/notes" method="post"> 
 
-    <p><textarea class="input_form" id="input_form body" rows="10" cols="30" name="babble[body]" maxlength="<%= (2000 - @note.body.length) * @note.reeds.count %>" placeholder="message to share..."></textarea></p>
+    <p><textarea class="input_form" id="body" rows="10" cols="30" name="babble[body]" maxlength="<%= (2000 - @note.body.length) * @note.reeds.count %>" placeholder="message to share..."></textarea></p>
 
-    <p><%= (2000 - @note.body.length) %> characters until full babble</p>
+    <p><%= (2000 - @note.body.length) %> characters until babble full</p>
 
     
     <input class="submit_button" id="submit_new_note" type="submit">

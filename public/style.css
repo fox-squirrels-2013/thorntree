@@ -45,27 +45,31 @@ body {
 #single_note_edit {
   position: absolute;
   top: 0; left: 0;
-  height: 100%;
-  width: 100%;
+  height: 100%; width: 100%;
   background-color: #ddd;
   display: none;
 }
 
-#edit_note_block:hover #single_note_edit{
-  display: inline-block;
-  background-color: #ddd;
-  opacity:0.8;
-  filter:alpha(opacity=80); /* For IE8 and earlier */
-
-}
-
-#single_note_edit h1 {
-  position: absolute;
-  top: 35%; left: 31%;
+#edit_text {
+  position: relative;
+  top: 35%;
   color: #222;
   text-decoration: none;
-  font-weight: bold;
 }
+
+#edit_note_block:hover #single_note{
+  opacity:0.3;
+  filter:alpha(opacity=30); /* For IE8 and earlier */
+}
+
+#edit_note_block:hover #single_note_edit{
+  display: inline-block;
+  background-color: #eee;
+  opacity:0.5;
+  filter:alpha(opacity=50); /* For IE8 and earlier */
+}
+
+
 
 #single_note_edit:hover #single_note {
   color: #aaa;
@@ -91,6 +95,13 @@ body {
 
 #edit_note_form {
   margin: auto;
+}
+
+.babble {
+  margin: auto;
+  width: 500px;
+  border: 2px solid #F15A24;
+  background-color: #FEF6F3; 
 }
 
 
