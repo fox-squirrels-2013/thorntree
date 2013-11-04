@@ -120,6 +120,13 @@ post '/search' do
    # Babble.where("body like '%partner%'")
    results = Babble.where("body like '%#{params[:search]}%'")
 
+   # the following search deletes all Babbles in the db
+   # test'); delete from babbles where 1 = 1; select * from babbles where (body like 'test
+   # this might work too (untested)
+   # test'); delete from babbles where 1 = 1; -- 
+   # and then this would fix it (untested)
+   # results = Babble.where("body like '%?%'", params[:search])
+
    content = results.all.map(&:title).join("<br>")
 
    output  = "<pre>"
